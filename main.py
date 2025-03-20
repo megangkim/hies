@@ -23,12 +23,16 @@ def frequency_analysis(ciphertext):
 
 
 def print_frequency_graph(frequency_dict):
-    """Prints a frequency analysis graph for letter occurrence."""
-    total = sum(frequency_dict.values())
-    
-    for letter in sorted(frequency_dict.keys()):
-        percentage = round((frequency_dict[letter] / total) * 100) if total > 0 else 0
-        print(f"{letter}: {'*' * percentage}")
+    """
+    Prints a bar graph representing the frequency of each letter in the given dictionary.
+    Each '*' represents 1% of the total occurrences.
+    """
+    total_count = sum(frequency_dict.values())  # Sum of all letter occurrences
+
+    for letter in map(chr, range(ord('A'), ord('Z') + 1)):  # Loop through A-Z
+        count = frequency_dict.get(letter, 0)  # Get the frequency, default to 0
+        percentage = round((count / total_count) * 100) if total_count > 0 else 0  # Calculate percentage
+        print(f"{letter}: {'*' * percentage}")  # Print the letter followed by asterisks
 
 
 def print_menu():
